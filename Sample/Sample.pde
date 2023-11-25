@@ -1,5 +1,7 @@
-int _numChildren = 7;
-int _maxLevels = 7;
+//@param numChildren: 各ノードが持つ子の数
+//@param maxLevels: ツリーの最大の深さ
+int _numChildren = 5;
+int _maxLevels = 5;
 
 Branch _trunk;
 
@@ -12,8 +14,7 @@ void setup() {
 }
 
 void newTree() {
-    _trunk = new Branch(1,0,width/2,height/2);
-    ((Branch) _trunk).drawMe();
+    _trunk = new Branch(1,width/2,height/2);
 }
 
 void draw() {

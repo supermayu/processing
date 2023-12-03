@@ -3,24 +3,24 @@
 int _numChildren = 5;
 int _maxLevels = 5;
 
-Branch _trunk;
+Circle _trunk;
 
 void setup() {
-    size(750, 500);
+    size(1000, 1000, P3D);
     background(255);
     noFill();
     smooth();
-    newTree();    
+    //noStroke();
+    newCircle();
 }
 
-void newTree() {
-    _trunk = new Branch(1,width/2,height/2);
+void newCircle() {
+    _trunk = new Circle(1,width/2,height/2,width,height);
 }
 
 void draw() {
     background(255);
-     ((Branch) _trunk).updateMe(width/2.0 ,height/2.0);
-     ((Branch) _trunk).drawMe();
+    //lights();
+     ((Circle) _trunk).updateMe(width/2.0 ,height/2.0,width,height);
+     ((Circle) _trunk).drawMe();
 }
-
-

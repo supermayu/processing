@@ -6,7 +6,7 @@ int _maxLevels = 5;
 Circle _trunk;
 
 void setup() {
-    size(1000, 1000, P3D);
+    size(400, 400, P3D);
     background(255);
     noFill();
     smooth();
@@ -15,12 +15,12 @@ void setup() {
 }
 
 void newCircle() {
-    _trunk = new Circle(1,width/2,height/2,width,height);
+    _trunk = new Circle(1,width/2,height/2,0,width,height);
 }
 
 void draw() {
     background(255);
     //lights();
-     ((Circle) _trunk).updateMe(width/2.0 ,height/2.0,width,height);
+     ((Circle) _trunk).updateMe(width/2.0 ,height/2.0,0,width,height);
      ((Circle) _trunk).drawMe();
 }

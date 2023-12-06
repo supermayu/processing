@@ -1,6 +1,6 @@
 class Circle {
 
-    //@param level:木の分岐の階層
+    //@param level:木の分岐
     //@param x,y:楕円の中心のx,y座標
     //@param width,height:楕円の幅と高さ
     float level;

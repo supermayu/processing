@@ -44,8 +44,8 @@ class Circle {
 
     void drawMe() {
         if(level > 1){
-            strokeWeight(strokeWeight);
-            stroke(0, 100);//輪郭線の色
+            //strokeWeight(strokeWeight);
+            //stroke(0, 100);//輪郭線の色
             fill(255, 100);//塗りつぶしの色
             ellipse(currentX, currentY, currentWidth, currentHeight);//x,yの位置に楕円を描画
             //translate(currentX, currentY,50);

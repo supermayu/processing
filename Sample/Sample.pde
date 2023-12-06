@@ -8,9 +8,9 @@ Circle _trunk;
 void setup() {
     size(1000, 1000, P3D);
     background(255);
-    noFill();
-    smooth();
-    //noStroke();
+    noStroke();
+    //noFill();
+    //smooth();
     newCircle();
 }
 

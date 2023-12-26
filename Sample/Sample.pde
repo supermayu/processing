@@ -8,13 +8,13 @@ Sphere _trunk;
 void setup() {
     size(400, 400, P3D);
     background(255);
-    //smooth();
     noStroke();
     newSphere();
+    frameRate(1);
 }
 
 void newSphere() {
-    _trunk = new Sphere(125, 125, 0, width, height, 1);
+    _trunk = new Sphere(width/2, height/2, 0, width, 1);
 }
 
 //draw関数は実行中常に呼び出され続ける
@@ -22,5 +22,7 @@ void draw() {
     background(255);
     lights();
     //((Sphere) _trunk).updateMe(width/2.0 ,height/2.0, 0, width,height);
-    ((Sphere) _trunk).drawMe();     
+
+     ((Sphere) _trunk).drawMe();  
+
 }

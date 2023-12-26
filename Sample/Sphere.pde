@@ -3,16 +3,15 @@ ArrayList<Sphere> children = new ArrayList<Sphere>();
 
 class Sphere {
 
-    //@param level:木の分岐の階層
     //@param x,y:楕円の中心のx,y座標
-    //@param width,height:楕円の幅と高さ
+    //@param width:楕円の半径
     float currentX, currentY, currentZ;
-    float currentWidth, currentHeight;
+    float currentRadius;
 
     //@param nextX,nextY:次の楕円の中心のx,y座標
-    //@param nextWidth,nextHeight：次の円の幅と高さ
+    //@param nextWidth：次の円の半径
     float nextX, nextY, nextZ;
-    float nextWidth,nextHeight;
+    float nextRadius;
 
     //@param len:現在の円の中心座標から次の円の中心座標までの長さ
     //@param rot:現在の円の中心座標から次の円の中心座標の角度
@@ -22,23 +21,23 @@ class Sphere {
     //各Sphereオブジェクトは独自のlevelを持ち、再帰的な呼び出し時にはそのlevelを引数として渡す
     int level;
     
-    //引数：円のx,y座標と幅、高さ
-    Sphere(float x, float y, float z, float wid, float hei, int lev) {
+    //引数：円のx,y座標と半径
+    Sphere(float x, float y, float z, float rad, int lev) {
+
         currentX = x;
         currentY = y;
         currentZ = z;
-        currentWidth = wid;
-        currentHeight = hei;
+        currentRadius = rad;
         level = lev;
 
-        updateMe(currentX,currentY,currentZ,currentWidth,currentHeight);
+        updateMe(currentX,currentY,currentZ);
 
         if(level <= _maxLevels){
+            // float lenMax = currentRad/2;
+
             for(int i = 1; i <= _numChildren; i++){
-                Sphere child = new Sphere(nextX, nextY, nextZ, nextWidth, nextHeight, level+1);
-                //println(nextWidth);
+                Sphere child = new Sphere(nextX, nextY, nextZ, nextRadius, level+1);
                 children.add(child);
-                //println("level: " + lev + ", childNum: " + childNum);ここまではOK
                 childNum++;
             }
         }
@@ -49,29 +48,37 @@ class Sphere {
             Sphere currentSphere = children.get(i);
             int lev = children.get(i).level;
             if(lev >= 1){
-                //stroke(0, 100);
-                fill(random(225),random(225),random(225), 50);//塗りつぶしの色
-                Sphere newSphere = new Sphere(currentSphere.nextX, currentSphere.nextY, currentSphere.nextZ, currentSphere.nextWidth, currentSphere.nextHeight, lev);
+                pushMatrix();
+                fill(random(225),random(225),random(225), 50);
+                Sphere newSphere = new Sphere(currentSphere.nextX, currentSphere.nextY, currentSphere.nextZ, currentSphere.nextRadius, lev);
                 translate(newSphere.nextX, newSphere.nextY,newSphere.nextZ);
-                sphere(newSphere.nextWidth);
-                println(newSphere.nextWidth);
+                sphere(newSphere.nextRadius);
+                popMatrix();
             }
         }
     }
     
     //円の場所とサイズアップデートするための関数
-    void updateMe(float currentX, float currentY, float currentZ, float currentWidth, float currentHeight) {
-        
-        len = random(120);
+    void updateMe(float currentX, float currentY, float currentZ) {
+        float lenMax = 50;
+        float radMax = 50;
+        if(currentRadius >= 50) {
+            lenMax = currentRadius/2;
+            radMax = currentRadius/2;
+            println(currentRadius);
+        }
+       // println("lenMax:"+lenMax);
+       // println("radMax:"+radMax);
+
+        len = random(lenMax);
         rot = random(360);
         
         float radian =  radians(rot);
-        nextX = currentX + (len * cos(radian));//次の球のx座標
-        nextY = currentY + (len * sin(radian));//次の球のy座標
-        nextZ = currentZ + (len * tan(radian));//次の球のz座標
-        nextWidth = random(100);
-        nextHeight = random(100);
-        
+        nextX = currentX + (len * cos(radian));
+        nextY = currentY + (len * sin(radian));
+       // nextZ = currentZ + (len * tan(radian));
+        nextRadius = random(radMax);
+       
         /*for (int i = 0; i < children.length; i++){
             children[i].updateMe(nextX, nextY, nextZ, nextWidth,nextHeight);
 

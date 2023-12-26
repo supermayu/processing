@@ -34,6 +34,8 @@ class Sphere {
 
         if(level <= _maxLevels){
             // float lenMax = currentRad/2;
+            float lenMax = currentRadius / 2;
+            float radMax = currentRadius / 2;
 
             for(int i = 1; i <= _numChildren; i++){
                 Sphere child = new Sphere(nextX, nextY, nextZ, nextRadius, level+1);
@@ -44,28 +46,33 @@ class Sphere {
     }
 
     void drawMe() {
+
         for(int i = 0; i < 362; i++) {
             Sphere currentSphere = children.get(i);
-            int lev = children.get(i).level;
+            int lev = currentSphere.level;
             if(lev >= 1){
                 pushMatrix();
-                fill(random(225),random(225),random(225), 50);
+                fill(random(225),random(225), random(225),50);
                 Sphere newSphere = new Sphere(currentSphere.nextX, currentSphere.nextY, currentSphere.nextZ, currentSphere.nextRadius, lev);
-                translate(newSphere.nextX, newSphere.nextY,newSphere.nextZ);
-                sphere(newSphere.nextRadius);
+                translate(currentSphere.nextX, currentSphere.nextY,currentSphere.nextZ);
+                sphere(currentSphere.nextRadius);
                 popMatrix();
             }
         }
+       /*  pushMatrix();
+        fill(0,0,0);
+        sphere(currentRadius);
+        popMatrix();*/
     }
     
     //円の場所とサイズアップデートするための関数
     void updateMe(float currentX, float currentY, float currentZ) {
-        float lenMax = 50;
-        float radMax = 50;
+        float lenMax = 150;
+        float radMax = 150;
         if(currentRadius >= 50) {
             lenMax = currentRadius/2;
             radMax = currentRadius/2;
-            println(currentRadius);
+            //println(currentRadius);
         }
        // println("lenMax:"+lenMax);
        // println("radMax:"+radMax);
@@ -79,10 +86,9 @@ class Sphere {
        // nextZ = currentZ + (len * tan(radian));
         nextRadius = random(radMax);
        
-        /*for (int i = 0; i < children.length; i++){
-            children[i].updateMe(nextX, nextY, nextZ, nextWidth,nextHeight);
+       /* for (int i = 0; i < 362; i++){
+            children.get(i).updateMe(nextX, nextY, nextZ);
 
         }*/
     }
 }
-

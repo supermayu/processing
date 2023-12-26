@@ -47,7 +47,7 @@ class Sphere {
 
     void drawMe() {
 
-        for(int i = 0; i < 362; i++) {
+        for(int i = 0; i < 50; i++) {
             Sphere currentSphere = children.get(i);
             int lev = currentSphere.level;
             if(lev >= 1){
@@ -70,12 +70,9 @@ class Sphere {
         float lenMax = 150;
         float radMax = 150;
         if(currentRadius >= 50) {
-            lenMax = currentRadius/2;
+            lenMax = currentRadius*1.7;
             radMax = currentRadius/2;
-            //println(currentRadius);
         }
-       // println("lenMax:"+lenMax);
-       // println("radMax:"+radMax);
 
         len = random(lenMax);
         rot = random(360);
@@ -83,7 +80,7 @@ class Sphere {
         float radian =  radians(rot);
         nextX = currentX + (len * cos(radian));
         nextY = currentY + (len * sin(radian));
-       // nextZ = currentZ + (len * tan(radian));
+        nextZ = currentZ + (10 +  sin(radian));
         nextRadius = random(radMax);
        
        /* for (int i = 0; i < 362; i++){

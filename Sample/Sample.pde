@@ -4,9 +4,12 @@ int _numChildren = 3;
 int _maxLevels = 5;
 
 Sphere _trunk;
+Table a;
 
 void setup() {
     size(400, 400, P3D);
+    a = loadTable("transaction.csv", "header");
+    println(a.getRowCount());  
     noStroke();
     newSphere();
     frameRate(1);

@@ -47,20 +47,53 @@ class Sphere {
 
     void drawMe() {
 
-        for(int i = 0; i < 31; i++) {
+        lines = loadStrings("transaction.csv");
+        int numRows = lines.length;
+        txZora = new float[numRows];
+        txPgn = new float[numRows];
+        txBase = new float[numRows];
+        txOp = new float[numRows];
+
+        for (int i = 1; i < numRows; i++) {
+            String[] values = split(lines[i], ',');
+            txZora[i] = float(values[1]);//a
+            txPgn[i] = float(values[2]);//g
+            txBase[i] = float(values[3]);//b
+            txOp[i] = float(values[4]);//r
+
+            float total = txZora[i] + txPgn[i] + txBase[i] + txOp[i];
+            float r = txOp[i] / total * 255;
+            float g = txPgn[i] / total * 255;
+            float b = txBase[i] / total * 255;
+            float a = txZora[i] / total * 255 +150;//薄すぎるので+200
+            println("r:"+r+",g:"+g+",b:"+b+ ",a:"+a);
+
             Sphere currentSphere = children.get(i);
             int lev = currentSphere.level;
             if(lev >= 1){
                 pushMatrix();
-
-                
-                fill(random(225),random(225), random(225),50);
+                fill(r,g, b,a);
                 Sphere newSphere = new Sphere(currentSphere.nextX, currentSphere.nextY, currentSphere.nextZ, currentSphere.nextRadius, lev);
                 translate(currentSphere.nextX, currentSphere.nextY,currentSphere.nextZ);
                 sphere(currentSphere.nextRadius);
                 popMatrix();
             }
         }
+
+        /*for(int i = 0; i < 31; i++) {
+            Sphere currentSphere = children.get(i);
+            int lev = currentSphere.level;
+            if(lev >= 1){
+                pushMatrix();
+
+
+                fill(random(225),random(225), random(225),50);
+                Sphere newSphere = new Sphere(currentSphere.nextX, currentSphere.nextY, currentSphere.nextZ, currentSphere.nextRadius, lev);
+                translate(currentSphere.nextX, currentSphere.nextY,currentSphere.nextZ);
+                sphere(currentSphere.nextRadius);
+                popMatrix();
+            }
+        }*/
        /*  pushMatrix();
         fill(0,0,0);
         sphere(currentRadius);

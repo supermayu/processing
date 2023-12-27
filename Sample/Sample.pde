@@ -62,12 +62,6 @@ void calculateTotals() {
 
     float total = sumTxZora + sumTxPgn + sumTxBase + sumTxOp;
 
-    println("Total tx_zora: " + sumTxZora);
-    println("Total tx_pgn: " + sumTxPgn);
-    println("Total tx_base: " + sumTxBase);
-    println("Total tx_op: " + sumTxOp);
-    println("Total:" + total);
-
     println("Ratio tx_zora: " + sumTxZora / total * 100+ "%");
     println("Ratio tx_pgn: " + sumTxPgn / total * 100+ "%");
     println("Ratio tx_base: " + sumTxBase / total * 100+ "%");

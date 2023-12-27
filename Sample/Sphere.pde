@@ -47,11 +47,13 @@ class Sphere {
 
     void drawMe() {
 
-        for(int i = 0; i < 50; i++) {
+        for(int i = 0; i < 31; i++) {
             Sphere currentSphere = children.get(i);
             int lev = currentSphere.level;
             if(lev >= 1){
                 pushMatrix();
+
+                
                 fill(random(225),random(225), random(225),50);
                 Sphere newSphere = new Sphere(currentSphere.nextX, currentSphere.nextY, currentSphere.nextZ, currentSphere.nextRadius, lev);
                 translate(currentSphere.nextX, currentSphere.nextY,currentSphere.nextZ);
